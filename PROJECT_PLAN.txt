@@ -1,0 +1,325 @@
+================================================================================
+mLab AI Support Platform - 6 Developer Team Breakdown & 3-Week Sprint Plan
+================================================================================
+
+OVERVIEW:
+This document breaks down the mLab AI Support Platform into 6 distinct pieces,
+each assigned to a different developer. The project is built over 3 weeks with
+clear deliverables for each week.
+
+================================================================================
+6 DEVELOPER ROLES & RESPONSIBILITIES
+================================================================================
+
+1. FRONTEND DEVELOPER - Website & Landing Page
+   Focus: mLab website mockup, navigation, hero section, branding
+   Tech: React, Tailwind CSS, UI/UX design
+
+2. FRONTEND DEVELOPER - Chat Widget UI
+   Focus: Chat widget component, message bubbles, animations, styling
+   Tech: React, Tailwind CSS, component state management
+
+3. FRONTEND DEVELOPER - Escalation Form
+   Focus: Escalation form component, validation, POPIA compliance UI
+   Tech: React, form handling, validation
+
+4. BACKEND DEVELOPER - Data Service Layer
+   Focus: Firebase service, knowledge base management, data persistence
+   Tech: TypeScript, data structures, service architecture
+
+5. BACKEND DEVELOPER - AI Integration Service
+   Focus: LLM provider service, API integration, response generation
+   Tech: TypeScript, Google Gemini API, async operations
+
+6. FULL STACK DEVELOPER - App Integration & Structure
+   Focus: App.tsx, routing, type definitions, constants, connecting all pieces
+   Tech: React, TypeScript, project architecture
+
+================================================================================
+WEEK 1 - FOUNDATION & BASIC FUNCTIONALITY
+================================================================================
+
+DEVELOPER 1: Website & Landing Page
+------------------------------------
+Card: Setup project structure and landing page layout
+Description: Create basic React app structure with mLab branding and hero section
+
+Card: Build navigation bar component
+Description: Implement responsive navigation with logo, menu items, and login button
+
+Card: Design and implement hero section
+Description: Create landing page with headline, description, CTA buttons, and image
+
+Card: Apply mLab brand colors and styling
+Description: Implement color scheme (#98C13C, #4F6B72) and consistent typography
+
+
+DEVELOPER 2: Chat Widget UI
+------------------------------------
+Card: Create floating chat button component
+Description: Build the circular floating button that opens/closes the chat widget
+
+Card: Design chat window container
+Description: Create the main chat window with header, message area, and input section
+
+Card: Implement message bubble components
+Description: Build user and bot message bubbles with proper styling and timestamps
+
+Card: Add typing indicator animation
+Description: Create animated typing dots that show when bot is "thinking"
+
+Card: Implement category selection buttons
+Description: Create clickable category buttons (Programmes, Locations, Applications, Events)
+
+
+DEVELOPER 3: Escalation Form
+------------------------------------
+Card: Create escalation form component structure
+Description: Build form container with proper layout and styling
+
+Card: Implement form input fields
+Description: Add name, email, phone, and message textarea inputs with validation
+
+Card: Add POPIA consent checkbox
+Description: Implement consent checkbox with proper labeling and validation
+
+Card: Create form submission handler
+Description: Handle form submission with validation and error handling
+
+Card: Style escalation form to match chat widget design
+Description: Apply consistent styling and animations to match overall design
+
+
+DEVELOPER 4: Data Service Layer
+------------------------------------
+Card: Setup TypeScript types and interfaces
+Description: Define Message, KBEntry, Escalation, and other data types
+
+Card: Create Firebase service class structure
+Description: Build service class with methods for KB, escalations, and events
+
+Card: Implement knowledge base seed data
+Description: Create initial KB entries for Programmes, Locations, Applications, Events
+
+Card: Build mock data storage (local storage simulation)
+Description: Implement in-memory storage for KB entries and escalations
+
+Card: Create getKB method for retrieving knowledge base
+Description: Implement method to fetch and return knowledge base entries
+
+
+DEVELOPER 5: AI Integration Service (Week 1 - Mock Only)
+------------------------------------
+Card: Create LLM provider service class structure
+Description: Build service class skeleton for future AI integration
+
+Card: Implement mock response generator
+Description: Create function that returns mock responses based on keywords or categories
+
+Card: Add response latency simulation
+Description: Simulate API delay with setTimeout to mimic real AI response time
+
+Card: Create response formatting
+Description: Format mock responses to match expected message structure
+
+
+DEVELOPER 6: App Integration & Structure
+------------------------------------
+Card: Setup main App.tsx component
+Description: Create root component with view state management
+
+Card: Create constants file
+Description: Define CATEGORIES array and COLORS object
+
+Card: Integrate website and chat widget
+Description: Connect landing page with floating chat widget component
+
+Card: Setup routing between chat and admin views (admin removed later)
+Description: Create view toggle functionality (will be simplified after admin removal)
+
+Card: Connect escalation form to chat widget
+Description: Integrate escalation form to show when triggered from chat
+
+Card: Wire up mock responses to chat widget
+Description: Connect mock AI service to chat widget message handling
+
+================================================================================
+WEEK 2 - AI INTEGRATION & ENHANCED FEATURES
+================================================================================
+
+DEVELOPER 1: Website & Landing Page
+------------------------------------
+Card: Add responsive design improvements
+Description: Enhance mobile and tablet layouts for better user experience
+
+Card: Implement smooth scroll animations
+Description: Add scroll-triggered animations to hero section elements
+
+
+DEVELOPER 2: Chat Widget UI
+------------------------------------
+Card: Add message history persistence
+Description: Store and retrieve chat history from local storage
+
+Card: Implement conversation end state
+Description: Create UI for ending conversations and starting new chats
+
+Card: Add scroll-to-bottom functionality
+Description: Auto-scroll to latest message when new messages arrive
+
+Card: Enhance chat widget animations
+Description: Add smooth open/close transitions and message appearance animations
+
+
+DEVELOPER 3: Escalation Form
+------------------------------------
+Card: Add form field validation feedback
+Description: Show inline error messages for invalid inputs
+
+Card: Implement form submission success state
+Description: Show confirmation message after successful escalation submission
+
+Card: Add loading state during submission
+Description: Display loading indicator while form is being submitted
+
+
+DEVELOPER 4: Data Service Layer
+------------------------------------
+Card: Implement escalation creation method
+Description: Add method to create and store escalation tickets
+
+Card: Add event logging functionality
+Description: Create method to log chat events for analytics
+
+Card: Implement knowledge base search functionality
+Description: Add method to search KB entries by keywords or categories
+
+
+DEVELOPER 5: AI Integration Service
+------------------------------------
+Card: Integrate Google Gemini API
+Description: Connect to Google Gemini API with proper authentication
+
+Card: Implement context-aware response generation
+Description: Use knowledge base context to generate relevant AI responses
+
+Card: Add sensitive content detection
+Description: Detect sensitive keywords and trigger escalation automatically
+
+Card: Implement response error handling
+Description: Handle API errors gracefully with fallback messages
+
+Card: Add system instructions for AI
+Description: Configure AI to act as friendly mLab support agent
+
+
+DEVELOPER 6: App Integration & Structure
+------------------------------------
+Card: Connect real AI service to chat widget
+Description: Replace mock responses with actual AI integration
+
+Card: Implement knowledge base context retrieval
+Description: Fetch relevant KB entries before sending to AI
+
+Card: Add sensitive keyword detection integration
+Description: Connect sensitive content detection to escalation flow
+
+Card: Wire up event logging
+Description: Log all chat interactions for analytics
+
+================================================================================
+WEEK 3 - ANALYTICS & POLISH
+================================================================================
+
+DEVELOPER 1: Website & Landing Page
+------------------------------------
+Card: Add footer section
+Description: Create footer with links and company information
+
+Card: Implement accessibility improvements
+Description: Add ARIA labels and keyboard navigation support
+
+Card: Performance optimization
+Description: Optimize images and implement lazy loading
+
+
+DEVELOPER 2: Chat Widget UI
+------------------------------------
+Card: Add message timestamps formatting
+Description: Display relative time (e.g., "2 minutes ago") for messages
+
+Card: Implement message search functionality
+Description: Allow users to search through chat history
+
+Card: Add emoji support and formatting
+Description: Support emoji rendering and text formatting in messages
+
+Card: Enhance mobile responsiveness
+Description: Optimize chat widget for mobile devices
+
+
+DEVELOPER 3: Escalation Form
+------------------------------------
+Card: Add file attachment support
+Description: Allow users to attach files to escalation requests
+
+Card: Implement form auto-save
+Description: Save form data locally to prevent data loss
+
+Card: Add category selection for escalations
+Description: Let users select issue category before submitting
+
+
+DEVELOPER 4: Data Service Layer
+------------------------------------
+Card: Implement metrics calculation
+Description: Calculate total conversations, escalations, deflection rate
+
+Card: Add data export functionality
+Description: Export escalations and events to CSV/JSON
+
+Card: Implement data persistence
+Description: Connect to actual Firebase or backend API (replace mock storage)
+
+
+DEVELOPER 5: AI Integration Service
+------------------------------------
+Card: Add response confidence scoring
+Description: Calculate and return confidence scores for AI responses
+
+Card: Implement token usage tracking
+Description: Track and log token consumption for cost monitoring
+
+Card: Add response caching
+Description: Cache common responses to reduce API calls
+
+Card: Implement response quality monitoring
+Description: Log response quality metrics for improvement
+
+
+DEVELOPER 6: App Integration & Structure
+------------------------------------
+Card: Add error boundary components
+Description: Implement error handling for component failures
+
+Card: Create loading states throughout app
+Description: Add loading indicators for async operations
+
+Card: Implement analytics dashboard integration
+Description: Connect metrics to admin dashboard (if admin kept)
+
+Card: Add environment variable configuration
+Description: Setup proper env variable handling for API keys
+
+Card: Final integration testing
+Description: Test all components working together end-to-end
+
+================================================================================
+NOTES:
+- Week 1 focuses on basic functionality with mock responses
+- Week 2 introduces real AI integration
+- Week 3 adds analytics and polish
+- Admin dashboard features are removed from this plan
+- Each developer can work relatively independently with clear interfaces
+
+================================================================================

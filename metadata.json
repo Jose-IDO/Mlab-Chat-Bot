@@ -1,7 +1,7 @@
 
 {
   "name": "mLab AI Support Platform",
-  "description": "A production-ready multimodal chatbot solution for mLab with an admin dashboard for KB management, reports, and escalations.",
+  "description": "mLab AI Support Platform - Week 1: Basic chat widget with mock responses and escalation form.",
   "requestFramePermissions": [
     "camera",
     "microphone"

@@ -50,22 +50,13 @@ class FirebaseService {
     if (esc) esc.status = status;
   }
 
-  // Events/Logs
+  // Events/Logs (Week 1: Not used, but kept for future)
   async logEvent(event: Omit<ChatEvent, 'id' | 'timestamp'>): Promise<void> {
     this.events.push({
       ...event,
       id: Math.random().toString(36).substr(2, 9),
       timestamp: new Date()
     });
-  }
-
-  async getMetrics() {
-    return {
-      totalConversations: this.events.length,
-      escalations: this.escalations.length,
-      p95Latency: 2400, // Hardcoded for simulation
-      deflectionRate: this.events.length > 0 ? ((this.events.length - this.escalations.length) / this.events.length * 100).toFixed(1) : 0
-    };
   }
 }
 

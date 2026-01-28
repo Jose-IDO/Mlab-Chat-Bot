@@ -58,6 +58,7 @@ const ChatWidget: React.FC = () => {
       return;
     }
 
+    // Week 1: Get KB context for mock responses
     const kb = await firebaseService.getKB();
     const relevantKB = kb.find(k => 
       text.toLowerCase().includes(k.category.toLowerCase()) || 
@@ -66,16 +67,11 @@ const ChatWidget: React.FC = () => {
 
     const context = relevantKB ? relevantKB.answer : "I don't have specific information in my records regarding this. I recommend escalating this query to a human agent.";
     
+    // Week 1: Use mock responses (no real AI)
     const response = await llmProvider.generateResponse(text, context);
     
     setIsTyping(false);
     addMessage(ChatRole.BOT, response.text);
-
-    await firebaseService.logEvent({
-      model: 'gemini-3-flash-preview',
-      latency: response.latency,
-      confidence: 0.95
-    });
   };
 
   const handleCategoryClick = (cat: string) => {
