@@ -2,9 +2,9 @@
 <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
 
-# mLab AI Support Platform - Week 1
+# mLab AI Support Platform
 
-A customer support chatbot widget for mLab Southern Africa with mock responses and escalation functionality.
+A customer support chatbot widget for mLab Southern Africa with landing page and escalation functionality.
 
 ## Run Locally
 
@@ -25,8 +25,9 @@ A customer support chatbot widget for mLab Southern Africa with mock responses a
    http://localhost:3000
    ```
 
-## Week 1 Features
+## Current Features
 
+- ✅ Landing page with Navbar, Hero, What We Do, Video, News, and Footer sections
 - ✅ Basic chat widget with open/close functionality
 - ✅ Mock AI responses (no API key required)
 - ✅ Escalation form with POPIA compliance
@@ -36,12 +37,57 @@ A customer support chatbot widget for mLab Southern Africa with mock responses a
 
 ## Project Structure
 
+- `components/Landing/` - Landing page components (Navbar, HeroSection, WhatWeDoSection, VideoSection, NewsSection, Footer)
 - `components/Chatbot/` - Chat widget and escalation form
 - `services/` - Data service and mock LLM provider
-- `App.tsx` - Main application component with mLab website mockup
+- `App.tsx` - Main application component
 
-## Notes
+## Features to be Implemented
 
-- This is Week 1 version with mock responses (no real AI integration)
-- Admin dashboard has been removed
-- No API keys required for Week 1 functionality
+### AI Integration
+- Google Gemini API integration
+- Context-aware response generation
+- Response error handling
+- System instructions for AI
+- Response latency tracking
+- Response confidence scoring
+- Token usage tracking
+- Response caching
+- Response quality monitoring
+
+### Chat Widget Enhancements
+- Typing indicator with animation
+- Message history persistence (local storage)
+- Conversation end state UI
+- Scroll-to-bottom functionality
+- Message timestamps formatting (relative time)
+- Message search functionality
+- Emoji support and text formatting
+- Smooth transitions and animations
+- Mobile responsiveness improvements
+
+### Escalation Form Enhancements
+- Form field validation feedback (inline error messages)
+- Form submission success state
+- Loading state during submission
+- File attachment support
+- Form auto-save functionality
+- Category selection for escalations
+
+### Data & Analytics
+- Event logging functionality
+- Knowledge base search functionality
+- Data export functionality (CSV/JSON)
+- Real data persistence (Firebase or backend API)
+- Analytics and metrics calculation
+- Conversation statistics and deflection rates
+
+### UI/UX Improvements
+- Error boundary components
+- Loading states throughout app
+- Accessibility improvements (ARIA labels, keyboard navigation)
+- Performance optimization (image lazy loading)
+- Scroll animations for hero section
+
+### Configuration
+- Environment variable configuration for API keys
