@@ -18,7 +18,6 @@ const ChatWidget: React.FC = () => {
     }
   ]);
   const [inputValue, setInputValue] = useState('');
-  const [isTyping, setIsTyping] = useState(false);
   const [showEscalation, setShowEscalation] = useState(false);
   const [conversationEnded, setConversationEnded] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -27,7 +26,7 @@ const ChatWidget: React.FC = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
-  }, [messages, isTyping, showEscalation, isOpen]);
+  }, [messages, showEscalation, isOpen]);
 
   const addMessage = (role: ChatRole, content: string, type: Message['type'] = 'text') => {
     setMessages(prev => [...prev, {
@@ -44,21 +43,18 @@ const ChatWidget: React.FC = () => {
     
     addMessage(ChatRole.USER, text);
     setInputValue('');
-    setIsTyping(true);
 
     const sensitiveKeywords = ['bank', 'account', 'credit card', 'password', 'pin', 'id number', 'salary', 'personal information'];
     const isSensitive = sensitiveKeywords.some(keyword => text.toLowerCase().includes(keyword));
 
     if (isSensitive) {
-      setTimeout(() => {
-        setIsTyping(false);
-        addMessage(ChatRole.BOT, "I don't have specific information in my records regarding how a \"bank\" system works at mLab, I recommend escalating this query to a human agent");
-        setShowEscalation(true);
-      }, 1000);
+      // Week 1: Immediate response, no delay
+      addMessage(ChatRole.BOT, "I don't have specific information in my records regarding this. I recommend escalating this query to a human agent");
+      setShowEscalation(true);
       return;
     }
 
-    // Week 1: Get KB context for mock responses
+    // Week 1: Get KB context for immediate mock responses
     const kb = await firebaseService.getKB();
     const relevantKB = kb.find(k => 
       text.toLowerCase().includes(k.category.toLowerCase()) || 
@@ -67,10 +63,8 @@ const ChatWidget: React.FC = () => {
 
     const context = relevantKB ? relevantKB.answer : "I don't have specific information in my records regarding this. I recommend escalating this query to a human agent.";
     
-    // Week 1: Use mock responses (no real AI)
+    // Week 1: Immediate mock responses (no delays, no typing indicator)
     const response = await llmProvider.generateResponse(text, context);
-    
-    setIsTyping(false);
     addMessage(ChatRole.BOT, response.text);
   };
 
@@ -96,16 +90,16 @@ const ChatWidget: React.FC = () => {
       {!isOpen && (
         <button 
           onClick={() => setIsOpen(true)}
-          className="w-16 h-16 bg-[#008151] rounded-full flex items-center justify-center shadow-2xl transition-all hover:scale-105 active:scale-95 text-white"
+          className="w-16 h-16 bg-[#008151] rounded-full flex items-center justify-center shadow-2xl text-white"
         >
           <i className="fas fa-comment-dots text-3xl"></i>
         </button>
       )}
 
-      {/* Main Chat Window (Designed like image) */}
+      {/* Main Chat Window - Week 1: No transitions, instant show/hide */}
       <div className={`
-        absolute bottom-0 right-0 w-[360px] h-[680px] bg-[#4A6D76] rounded-[30px] shadow-2xl flex flex-col overflow-hidden transition-all duration-500 ease-in-out origin-bottom-right
-        ${isOpen ? 'translate-y-0 scale-100 opacity-100' : 'translate-y-20 scale-50 opacity-0 pointer-events-none'}
+        absolute bottom-0 right-0 w-[360px] h-[680px] bg-[#4A6D76] rounded-[30px] shadow-2xl flex flex-col overflow-hidden
+        ${isOpen ? '' : 'hidden'}
       `}>
         
         {/* Header (Pill container style) */}
@@ -117,7 +111,7 @@ const ChatWidget: React.FC = () => {
             <span className="text-xs font-bold text-gray-800">mLab AI Support</span>
             <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full border-2 border-white"></div>
           </div>
-          <button onClick={() => setIsOpen(false)} className="absolute right-6 text-gray-800/80 hover:text-white transition-colors">
+          <button onClick={() => setIsOpen(false)} className="absolute right-6 text-gray-800/80">
             <i className="fas fa-times text-2xl"></i>
           </button>
         </div>
@@ -160,7 +154,7 @@ const ChatWidget: React.FC = () => {
                       <button 
                         key={cat} 
                         onClick={() => handleCategoryClick(cat)}
-                        className="bg-[#003829] text-[#A5CD39] text-[9px] font-black uppercase py-2 rounded-full flex items-center justify-center gap-2 hover:bg-[#004d38] transition-all"
+                        className="bg-[#003829] text-[#A5CD39] text-[9px] font-black uppercase py-2 rounded-full flex items-center justify-center gap-2"
                       >
                         <i className={`fas fa-${cat === 'Programmes' ? 'graduation-cap' : cat === 'Locations' ? 'map-marker-alt' : cat === 'Applications' ? 'file-alt' : 'calendar-alt'}`}></i>
                         {cat}
@@ -170,19 +164,6 @@ const ChatWidget: React.FC = () => {
                 )}
               </div>
             ))}
-
-            {isTyping && (
-              <div className="flex items-start gap-2 ml-4">
-                <div className="w-8 h-8 rounded-full bg-[#A5CD39] flex items-center justify-center">
-                  <i className="fas fa-robot text-white text-[10px]"></i>
-                </div>
-                <div className="flex gap-1 p-2">
-                  <div className="w-1.5 h-1.5 bg-white rounded-full animate-bounce"></div>
-                  <div className="w-1.5 h-1.5 bg-white rounded-full animate-bounce delay-75"></div>
-                  <div className="w-1.5 h-1.5 bg-white rounded-full animate-bounce delay-150"></div>
-                </div>
-              </div>
-            )}
 
             {conversationEnded && (
               <div className="bg-white rounded-xl p-8 mt-6 mx-2 shadow-xl text-center flex flex-col items-center">
@@ -206,7 +187,7 @@ const ChatWidget: React.FC = () => {
           {!conversationEnded && !showEscalation && (
             <div className="px-4 pb-6 shrink-0 border-t border-white/10 pt-4">
               <div className="h-12 bg-[#D1D5DB] rounded-full flex items-center px-4 shadow-inner">
-                <button className="text-gray-600 hover:text-black transition-colors">
+                <button className="text-gray-600">
                   <i className="fas fa-plus text-xl"></i>
                 </button>
                 <input 
@@ -219,7 +200,7 @@ const ChatWidget: React.FC = () => {
                 />
                 <button 
                   onClick={() => handleSend()}
-                  className="w-8 h-8 bg-[#A5CD39] rounded-full flex items-center justify-center text-white hover:bg-[#94b833] transition-all"
+                  className="w-8 h-8 bg-[#A5CD39] rounded-full flex items-center justify-center text-white"
                 >
                   <i className="fas fa-arrow-up text-sm"></i>
                 </button>
@@ -227,9 +208,9 @@ const ChatWidget: React.FC = () => {
             </div>
           )}
 
-          {/* Escalation View (When triggered) */}
+          {/* Escalation View (When triggered) - Week 1: No animations */}
           {showEscalation && (
-            <div className="absolute inset-0 z-50 bg-[#A5CD39] flex flex-col p-6 animate-slideUp">
+            <div className="absolute inset-0 z-50 bg-[#A5CD39] flex flex-col p-6">
                <div className="flex justify-between items-center mb-6">
                   <h2 className="text-xl font-black text-gray-800">Support Required</h2>
                   <button onClick={() => setShowEscalation(false)} className="p-2 bg-black/10 rounded-full">

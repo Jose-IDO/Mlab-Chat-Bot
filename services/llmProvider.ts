@@ -32,15 +32,9 @@ class LLMProvider {
   }
 
   async generateResponse(prompt: string, context: string = ""): Promise<{ text: string; latency: number }> {
-    const start = Date.now();
-    
-    // Simulate API delay (Week 1: Mock only)
-    await new Promise(resolve => setTimeout(resolve, 800 + Math.random() * 400));
-    
-    const latency = Date.now() - start;
+    // Week 1: Immediate response, no delays
     const text = this.getMockResponse(prompt, context);
-    
-    return { text, latency };
+    return { text, latency: 0 };
   }
 }
 
