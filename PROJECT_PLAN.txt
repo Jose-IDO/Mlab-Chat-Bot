@@ -149,6 +149,9 @@ Description: Enhance mobile and tablet layouts
 Card: Add footer section
 Description: Create footer with links and company information
 
+Card: Add hover effects and button interactions
+Description: Implement hover states and transitions for navigation and CTA buttons
+
 
 DEVELOPER 2: Chat Widget UI
 ------------------------------------
@@ -162,7 +165,10 @@ Card: Add scroll-to-bottom functionality
 Description: Auto-scroll to latest message when new messages arrive
 
 Card: Add typing indicator (Week 2 feature)
-Description: Show typing animation when AI is processing response
+Description: Show typing animation with bouncing dots when AI is processing response
+
+Card: Add response delay handling
+Description: Handle async AI responses with proper loading states and delays
 
 
 DEVELOPER 3: Escalation Form
@@ -206,6 +212,9 @@ Description: Handle API errors gracefully with fallback messages
 Card: Add system instructions for AI
 Description: Configure AI to act as friendly mLab support agent
 
+Card: Add response latency tracking
+Description: Track and simulate realistic API response times for better UX
+
 
 DEVELOPER 6: App Integration & Structure
 ------------------------------------
@@ -233,6 +242,9 @@ Description: Add ARIA labels and keyboard navigation support
 Card: Performance optimization
 Description: Optimize images and implement lazy loading
 
+Card: Add scroll animations
+Description: Implement scroll-triggered animations for hero section elements
+
 
 DEVELOPER 2: Chat Widget UI
 ------------------------------------
@@ -248,8 +260,14 @@ Description: Support emoji rendering and text formatting in messages
 Card: Enhance mobile responsiveness
 Description: Optimize chat widget for mobile devices
 
-Card: Add smooth transitions (Week 3 polish)
-Description: Add animations for chat open/close and message appearance
+Card: Add smooth transitions and animations (Week 3 polish)
+Description: Add smooth animations for chat open/close with scale and fade effects
+
+Card: Add message appearance animations
+Description: Animate message bubbles appearing with fade-in effects
+
+Card: Add hover effects and button transitions
+Description: Implement hover states and smooth transitions for all interactive elements
 
 
 DEVELOPER 3: Escalation Form
