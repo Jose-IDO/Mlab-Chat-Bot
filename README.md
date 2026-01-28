@@ -2,19 +2,46 @@
 <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
 
-# Run and deploy your AI Studio app
+# mLab AI Support Platform - Week 1
 
-This contains everything you need to run your app locally.
-
-View your app in AI Studio: https://ai.studio/apps/temp/1
+A customer support chatbot widget for mLab Southern Africa with mock responses and escalation functionality.
 
 ## Run Locally
 
-**Prerequisites:**  Node.js
-
+**Prerequisites:** Node.js (v16 or higher)
 
 1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+   ```bash
+   npm install
+   ```
+
+2. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+3. Open your browser and navigate to:
+   ```
+   http://localhost:3000
+   ```
+
+## Week 1 Features
+
+- ✅ Basic chat widget with open/close functionality
+- ✅ Mock AI responses (no API key required)
+- ✅ Escalation form with POPIA compliance
+- ✅ Knowledge base integration
+- ✅ Category selection buttons
+- ✅ Sensitive content detection
+
+## Project Structure
+
+- `components/Chatbot/` - Chat widget and escalation form
+- `services/` - Data service and mock LLM provider
+- `App.tsx` - Main application component with mLab website mockup
+
+## Notes
+
+- This is Week 1 version with mock responses (no real AI integration)
+- Admin dashboard has been removed
+- No API keys required for Week 1 functionality
