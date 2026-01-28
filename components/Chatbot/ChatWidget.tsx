@@ -54,17 +54,8 @@ const ChatWidget: React.FC = () => {
       return;
     }
 
-    // Week 1: Get KB context for immediate mock responses
-    const kb = await firebaseService.getKB();
-    const relevantKB = kb.find(k => 
-      text.toLowerCase().includes(k.category.toLowerCase()) || 
-      text.toLowerCase().includes(k.question.toLowerCase().split(' ')[0])
-    );
-
-    const context = relevantKB ? relevantKB.answer : "I don't have specific information in my records regarding this. I recommend escalating this query to a human agent.";
-    
     // Week 1: Immediate mock responses (no delays, no typing indicator)
-    const response = await llmProvider.generateResponse(text, context);
+    const response = await llmProvider.generateResponse(text);
     addMessage(ChatRole.BOT, response.text);
   };
 

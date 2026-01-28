@@ -31,7 +31,6 @@ A customer support chatbot widget for mLab Southern Africa with landing page and
 - ✅ Basic chat widget with open/close functionality
 - ✅ Mock AI responses (no API key required)
 - ✅ Escalation form with POPIA compliance
-- ✅ Knowledge base integration
 - ✅ Category selection buttons
 - ✅ Sensitive content detection
 
@@ -76,7 +75,6 @@ A customer support chatbot widget for mLab Southern Africa with landing page and
 
 ### Data & Analytics
 - Event logging functionality
-- Knowledge base search functionality
 - Data export functionality (CSV/JSON)
 - Real data persistence (Firebase or backend API)
 - Analytics and metrics calculation

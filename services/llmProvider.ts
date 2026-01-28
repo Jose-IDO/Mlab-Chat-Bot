@@ -2,13 +2,8 @@
 // Week 1: Mock LLM Provider (No AI Integration)
 class LLMProvider {
   // Mock response generator for Week 1
-  private getMockResponse(prompt: string, context: string): string {
+  private getMockResponse(prompt: string): string {
     const lowerPrompt = prompt.toLowerCase();
-    
-    // If we have context from KB, use it
-    if (context && !context.includes("I don't have specific information")) {
-      return context;
-    }
     
     // Mock responses based on keywords
     if (lowerPrompt.includes('programme') || lowerPrompt.includes('codetribe')) {
@@ -31,9 +26,9 @@ class LLMProvider {
     return "I don't have specific information in my records regarding this. I recommend escalating this query to a human agent who can better assist you.";
   }
 
-  async generateResponse(prompt: string, context: string = ""): Promise<{ text: string; latency: number }> {
+  async generateResponse(prompt: string): Promise<{ text: string; latency: number }> {
     // Week 1: Immediate response, no delays
-    const text = this.getMockResponse(prompt, context);
+    const text = this.getMockResponse(prompt);
     return { text, latency: 0 };
   }
 }

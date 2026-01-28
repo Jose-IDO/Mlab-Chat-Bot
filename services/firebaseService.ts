@@ -1,33 +1,10 @@
 
-import { KBEntry, Escalation, ChatEvent, KBStatus, EscalationStatus } from '../types';
-import { SEED_KB } from '../constants';
+import { Escalation, ChatEvent, EscalationStatus } from '../types';
 
 // Simulated Local Storage / Persistence for Demo
 class FirebaseService {
-  private kb: KBEntry[] = [...SEED_KB];
   private escalations: Escalation[] = [];
   private events: ChatEvent[] = [];
-
-  // Knowledge Base
-  async getKB(): Promise<KBEntry[]> {
-    return this.kb;
-  }
-
-  async addKBEntry(entry: Omit<KBEntry, 'id' | 'lastUpdated' | 'status'>): Promise<KBEntry> {
-    const newEntry: KBEntry = {
-      ...entry,
-      id: Math.random().toString(36).substr(2, 9),
-      status: KBStatus.PENDING,
-      lastUpdated: new Date()
-    };
-    this.kb.push(newEntry);
-    return newEntry;
-  }
-
-  async updateKBStatus(id: string, status: KBStatus): Promise<void> {
-    const entry = this.kb.find(e => e.id === id);
-    if (entry) entry.status = status;
-  }
 
   // Escalations
   async getEscalations(): Promise<Escalation[]> {
