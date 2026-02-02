@@ -1,0 +1,81 @@
+HOW TO PUSH YOUR CODE TO GITHUB
+================================
+
+Follow these steps to push your developer folder to your assigned branch:
+
+STEP 1: Open Git Bash or Terminal
+----------------------------------
+- Navigate to the main project directory: mlab-ai-support-platform
+
+STEP 2: Check Your Current Branch
+----------------------------------
+Run: git branch
+
+You should see your branch listed (nyakallo_dev, orinea_dev, ashley_dev, luyanda_dev, or rorisang_dev)
+
+STEP 3: Switch to Your Branch
+-------------------------------
+Run: git checkout YOUR_BRANCH_NAME
+
+Example:
+- git checkout nyakallo_dev
+- git checkout orinea_dev
+- git checkout ashley_dev
+- git checkout luyanda_dev
+- git checkout rorisang_dev
+
+STEP 4: Copy Your Folder Contents
+----------------------------------
+Copy all files from your developer folder (nyakallo_dev, orinea_dev, etc.) 
+into the main project directory, maintaining the same folder structure.
+
+For example, if you're nyakallo_dev:
+- Copy: nyakallo_dev/components/Landing/* 
+- To: components/Landing/*
+
+STEP 5: Stage Your Changes
+---------------------------
+Run: git add .
+
+This adds all your new/modified files to staging.
+
+STEP 6: Commit Your Changes
+-----------------------------
+Run: git commit -m "Add [your component name] implementation"
+
+Example messages:
+- "Add landing page components"
+- "Add chat widget UI component"
+- "Add escalation form component"
+- "Add data service layer"
+- "Add AI integration service with Gemini API"
+
+STEP 7: Push to Remote
+----------------------
+Run: git push origin YOUR_BRANCH_NAME
+
+Example:
+- git push origin nyakallo_dev
+- git push origin orinea_dev
+
+STEP 8: Verify
+--------------
+Check GitHub to confirm your code was pushed successfully.
+
+TROUBLESHOOTING
+---------------
+If you get "branch is behind" error:
+1. Run: git pull origin YOUR_BRANCH_NAME
+2. Resolve any conflicts if needed
+3. Run: git push origin YOUR_BRANCH_NAME
+
+If you need to set up remote:
+1. Run: git remote -v
+2. If empty, add: git remote add origin https://github.com/Jose-IDO/Mlab-Chat-Bot.git
+
+IMPORTANT NOTES
+---------------
+- Do NOT push to main branch
+- Only push to your assigned developer branch
+- Make sure all your files are in the correct folder structure
+- Test your code locally before pushing
