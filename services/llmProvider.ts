@@ -1,65 +1,116 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+const SYSTEM_INSTRUCTION = `You are a helpful mLab AI Support assistant. mLab is a South African innovation hub and tech training organization.
+
+IMPORTANT: Only provide factual information about mLab. If you don't have specific information about mLab programmes, locations, applications, or events, say "I don't have that specific information. Please visit the mLab website or contact their support team directly for accurate details."
+
+Do not make up or guess information about:
+- Specific program dates, deadlines, or schedules
+- Application requirements or processes
+- Contact information or locations
+- Pricing or fees
+
+Keep responses concise and friendly. If you're unsure, always recommend contacting mLab directly.`;
+const DEFAULT_MODEL = 'Qwen/Qwen2.5-7B-Instruct';
 
 function getApiKey(): string {
-  const key = (
-    (typeof import.meta !== 'undefined' && (import.meta.env as Record<string, string>)?.VITE_GEMINI_API_KEY) ||
-    (typeof import.meta !== 'undefined' && (import.meta.env as Record<string, string>)?.GEMINI_API_KEY) ||
-    (typeof process !== 'undefined' && process.env?.GEMINI_API_KEY) ||
-    (typeof process !== 'undefined' && process.env?.API_KEY) ||
+  return (
+    (typeof import.meta !== 'undefined' && import.meta.env?.VITE_HF_API_KEY) ||
+    (typeof import.meta !== 'undefined' && import.meta.env?.HF_API_KEY) ||
+    (typeof process !== 'undefined' && process.env?.HF_API_KEY) ||
+    (typeof process !== 'undefined' && process.env?.HUGGINGFACE_API_KEY) ||
     ''
   ).trim();
-  return key;
 }
 
-const MODEL = 'gemini-2.0-flash';
+function getModel(): string {
+  return (
+    (typeof import.meta !== 'undefined' && import.meta.env?.VITE_HF_MODEL) ||
+    (typeof import.meta !== 'undefined' && import.meta.env?.HF_MODEL) ||
+    (typeof process !== 'undefined' && process.env?.HF_MODEL) ||
+    (typeof process !== 'undefined' && process.env?.HUGGINGFACE_MODEL) ||
+    DEFAULT_MODEL
+  ).trim() || DEFAULT_MODEL;
+}
+
+function formatPrompt(prompt: string): string {
+  return `${SYSTEM_INSTRUCTION}\n\nUser: ${prompt}\nAssistant:`;
+}
+
+function extractText(payload: unknown): string {
+  if (!payload) return '';
+  if (Array.isArray(payload)) {
+    const first = payload[0] as { generated_text?: string } | undefined;
+    return first?.generated_text ?? '';
+  }
+  if (typeof payload === 'object') {
+    const obj = payload as { generated_text?: string; text?: string; error?: string };
+    return obj.generated_text || obj.text || '';
+  }
+  return '';
+}
 
 class LLMProvider {
-  private genAI: GoogleGenerativeAI | null = null;
-
-  constructor() {
-    const apiKey = getApiKey();
-    if (apiKey) {
-      this.genAI = new GoogleGenerativeAI(apiKey);
-    }
-  }
-
   async generateResponse(prompt: string): Promise<{ text: string; latency: number }> {
     const start = Date.now();
     const apiKey = getApiKey();
     if (!apiKey) {
       return {
-        text: "API key not set. Add GEMINI_API_KEY to a .env file in the project root and restart the dev server (Ctrl+C then npm run dev).",
+        text: 'API key not set. Add HF_API_KEY to a .env file in the project root and restart the dev server (Ctrl+C then npm run dev).',
         latency: Date.now() - start
       };
     }
-    if (!this.genAI) {
-      this.genAI = new GoogleGenerativeAI(apiKey);
-    }
+
+    const model = getModel();
     try {
-      const model = this.genAI.getGenerativeModel({
-        model: MODEL,
-        systemInstruction: "You are a friendly mLab AI Support agent. Answer questions about mLab programmes, locations, applications, and events. Use simple language."
+      const response = await fetch('https://router.huggingface.co/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          model: model,
+          messages: [
+            { role: 'system', content: SYSTEM_INSTRUCTION },
+            { role: 'user', content: prompt }
+          ],
+          max_tokens: 512,
+          temperature: 0.1
+        })
       });
-      const result = await model.generateContent(prompt);
-      const response = result.response;
-      const text = response.text();
+
+      const payload = await response.json().catch(() => null);
+      if (!response.ok) {
+        let errorText = response.statusText;
+        if (payload && typeof payload === 'object') {
+          if ('error' in payload) {
+            const err = (payload as any).error;
+            errorText = typeof err === 'string' ? err : (err?.message || JSON.stringify(err));
+          } else if ('message' in payload) {
+            errorText = String((payload as any).message);
+          }
+        }
+        const userMsg = response.status === 401 || response.status === 403
+          ? 'API key invalid or missing. Check your .env file and restart the dev server.'
+          : response.status === 429
+            ? 'Rate limit exceeded. Please try again in a moment.'
+            : response.status === 503
+              ? 'Model is loading on Hugging Face. Please try again in a few seconds.'
+              : `Error connecting to AI service. Please try again. (${errorText.slice(0, 80)}${errorText.length > 80 ? '...' : ''})`;
+        return { text: userMsg, latency: Date.now() - start };
+      }
+
+      const text = (payload && typeof payload === 'object' && 'choices' in payload && Array.isArray((payload as any).choices))
+        ? ((payload as any).choices[0]?.message?.content || '').trim()
+        : extractText(payload).trim();
       return {
         text: text || "I'm sorry, I couldn't generate a response. Would you like to speak to an agent?",
         latency: Date.now() - start
       };
     } catch (err: unknown) {
-      const error = err as { message?: string; status?: number };
-      const msg = error?.message ?? String(err);
-      console.error("LLM Error:", err);
-      const userMsg = msg.includes('API_KEY') || msg.includes('API key')
-        ? "API key invalid or missing. Check your .env file and restart the dev server."
-        : msg.includes('quota') || msg.includes('429')
-          ? "Rate limit exceeded. Please try again in a moment."
-          : msg.includes('403') || msg.includes('PERMISSION')
-            ? "Permission denied. Check that your API key is valid and has Gemini API access."
-            : `Error connecting to AI service. Please try again. (${msg.slice(0, 80)}${msg.length > 80 ? '…' : ''})`;
+      const msg = err instanceof Error ? err.message : String(err);
+      console.error('LLM Error:', err);
       return {
-        text: userMsg,
+        text: `Error connecting to AI service. Please try again. (${msg.slice(0, 80)}${msg.length > 80 ? '...' : ''})`,
         latency: Date.now() - start
       };
     }
