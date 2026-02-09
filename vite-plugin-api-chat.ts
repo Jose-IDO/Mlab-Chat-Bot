@@ -1,21 +1,31 @@
 import type { Plugin } from 'vite';
 import { loadEnv } from 'vite';
+import { readFile } from 'node:fs/promises';
+import path from 'node:path';
 
-const SYSTEM_INSTRUCTION = `You are a helpful mLab AI Support assistant. mLab is a South African innovation hub and tech training organization.
+const SYSTEM_INSTRUCTION = `You are a helpful mLab AI Support assistant for mLab (South Africa).
 
-IMPORTANT: Only provide factual information about mLab. If you don't have specific information about mLab programmes, locations, applications, or events, say "I don't have that specific information. Please visit the mLab website or contact their support team directly for accurate details."
-
-Do not make up or guess information about:
-- Specific program dates, deadlines, or schedules
-- Application requirements or processes
-- Contact information or locations
-- Pricing or fees
-
-Keep responses concise and friendly. If you're unsure, always recommend contacting mLab directly.`;
+Rules:
+- Only answer using the provided context.
+- Do not use information about other organizations with similar names (e.g., mLab in other countries).
+- If the answer is not in the provided context, say you do not have that information and suggest contacting mLab directly.
+- Do not mention the existence of any internal notes or context.
+- Keep responses concise and friendly.`;
 const DEFAULT_MODEL = 'Qwen/Qwen2.5-7B-Instruct';
+const KNOWLEDGE_PATH = 'knowledge/07_frequently_asked_questions.txt';
 
-function formatPrompt(prompt: string): string {
-  return `${SYSTEM_INSTRUCTION}\n\nUser: ${prompt}\nAssistant:`;
+let cachedKnowledge: string | null = null;
+
+async function getKnowledgeBase(): Promise<string> {
+  if (cachedKnowledge !== null) return cachedKnowledge;
+  try {
+    const fullPath = path.join(process.cwd(), KNOWLEDGE_PATH);
+    const text = await readFile(fullPath, 'utf-8');
+    cachedKnowledge = text.trim();
+  } catch {
+    cachedKnowledge = '';
+  }
+  return cachedKnowledge;
 }
 
 function extractText(payload: unknown): string {
@@ -65,6 +75,11 @@ export function apiChatPlugin(): Plugin {
               return;
             }
 
+            const knowledge = await getKnowledgeBase();
+            const systemContent = knowledge
+              ? `${SYSTEM_INSTRUCTION}\n\nContext:\n${knowledge}`
+              : SYSTEM_INSTRUCTION;
+
             const hfResponse = await fetch('https://router.huggingface.co/v1/chat/completions', {
               method: 'POST',
               headers: {
@@ -74,7 +89,7 @@ export function apiChatPlugin(): Plugin {
               body: JSON.stringify({
                 model: model,
                 messages: [
-                  { role: 'system', content: SYSTEM_INSTRUCTION },
+                  { role: 'system', content: systemContent },
                   { role: 'user', content: prompt }
                 ],
                 max_tokens: 512,
