@@ -1,0 +1,9 @@
+
+{
+  "name": "mLab AI Support Platform",
+  "description": "mLab AI Support Platform - Week 1: Basic chat widget with mock responses and escalation form.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

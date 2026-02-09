@@ -1,0 +1,24 @@
+Programme Name: CodeTribe Academy (Skills Development Programme)
+
+Purpose:
+Train young South Africans to become software developers and technology professionals.
+
+Programme Duration:
+6 to 12 months
+
+Training Includes:
+
+* Web development
+* Android development
+* iOS development
+* Cloud computing
+* Agile/Scrum project management
+* Portfolio development
+* Workplace readiness
+* 4IR technologies
+
+Outcome:
+Participants gain practical experience and build a portfolio of real software solutions to improve employment or self-employment opportunities.
+
+Accreditation:
+Aligned with industry needs and supported by business partners.
