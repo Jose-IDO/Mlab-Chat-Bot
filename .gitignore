@@ -16,6 +16,8 @@ dist-ssr
 .env
 .env.local
 .env.*.local
+env file.zip
+env_extracted
 test-gemini.js
 
 # Editor directories and files

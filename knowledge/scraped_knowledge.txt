@@ -1,0 +1,243 @@
+--- Source: https://mlab.co.za/ ---
+
+Home
+Who we are
+What we do
+Caret Down
+Tech Ecosystems
+Tech Skills
+Tech Start-ups
+Tech Solutions
+Partners
+News
+Resources
+Contact Us
+codetribeMenu
+Home
+Who we are
+What we do
+Caret Down
+Tech Ecosystems
+Tech Skills
+Tech Start-ups
+Tech Solutions
+Partners
+News
+Resources
+Contact Us
+codetribeSUPPORTING PROMISING START-UPS TO BECOME GREAT BUSINESSESRegistered Non-Profit (Mobile Applications Laboratory NPC) & Level 1 B-BBEE Skills & ESD ProviderSTIMULATING YOUTH ECOSYSTEMSRegistered Non-Profit (Mobile Applications Laboratory NPC) & Level 1 B-BBEE Skills & ESD ProviderUPSKILLING THE NEXT GENERATION OF CODERSRegistered Non-Profit (Mobile Applications Laboratory NPC) & Level 1 B-BBEE Skills & ESD ProviderTOWARDS A DIGITALLY EMPOWERED TOMORROWRegistered Non-Profit (Mobile Applications Laboratory NPC) & Level 1 B-BBEE Skills & ESD ProviderCREATING TECHNOLOGY FOR THE PEOPLERegistered Non-Profit (Mobile Applications Laboratory NPC) & Level 1 B-BBEE Skills & ESD ProviderUPSKILLING THE NEXT GENERATION OF CODERSRegistered Non-Profit (Mobile Applications Laboratory NPC) & Level 1 B-BBEE Skills & ESD ProviderWHAT WE DOEvents, Training, Workshops and BootcampsTech EcosystemsThese training events and workshops are structured for various target audiences such as school students in science, technology, engineering…read moreUnleashing Tech TalentTech SkillsAccording to the World Bank, more than 230 million jobs will require digital skills in Africa by 2030. Employers are already struggling to…read moreLaunching Great BusinessesTech Start-UpsA great business idea is a good start … but where to from there? mLab specialises in supporting early-stage start-ups through our various…read moreImpact through TechnologyTech SolutionsmLab’s Innovation Lab is a creative space where our team supports digital solution development, especially those with a social impact focus…read moreLATEST NEWSKeep up to date with our latest calls for applications, opportunities, projects and success stories28 January, 2026WE ARE HIRING A PROGRAMME MANAGER: DIGITAL SKILLS AND ENTERPRISE DEVELOPMENTJob Title Programme Manager: Digital Skills and Enterprise Development Job Purpose The role is designed to lead, coordinate, and drive the…read more31 October, 2025CALL FOR APPLICATIONS: APPOINTMENT OF AN ASSESSOR AND MODERATOR FOR THE CODETRIBE QCTO PROGRAMMEINTRODUCTION Developing digital talent, innovative technology, and successful entrepreneurs are the pillars on which Africa will build a…read more24 October, 2025CALL FOR DIGITAL AND GREEN INNOVATIONSCHALLENGER DIGITAL and GREEN ACCELERATOR PROGRAMME**  CONTEXT  The climate crisis and sustainability of the planet is no longer a distant…read more30 September, 2025MLAB PARTNERS WITH GIZ TO HELP SOUTH AFRICAN SMES GROW THROUGH SKILLED YOUNG TALENT.mLab is proud to announce a new partnership with the Digital Skills for Jobs and Income II (DS4JI II) project to implement cloud computing…read moremLab is a tech-centred business that prepares innovators and entrepreneurs for opportunities within the digital economy. mLab is registered as a Not-for-Profit Company (NPC) with public benefit organisation (PBO) status and is a Level 1 B-BBEE service provider.Explore
+Home
+Who we are
+What we do
+Partners
+News
+Resources
+Contact UsContact usThe Innovation Hub, Enterprise Building, 8, Pretoria, 0020Chat to us
+
+--- Source: https://codetribelanding.netlify.app/ ---
+
+CodeTribe
+CodeTribe
+About Us Our Webinars Frameworks Contact UsLoginLearn how to build Android & iOS AppsLearn how to build Android & iOS AppsWe have an amazing team that is willing to train, guide and mentor you on your journey.Login
+ReactJS
+Angular
+Github
+HTML5
+CSS3
+IonicAbout
+UsCodeTribe Academy Launched on 1 September 2014 as a partnership between The Innovation Hub and mLab Southern Africa to increase the skills of young ICT enthusiasts through a dedicated programme to of practical development of high impact and market relevant solutions.CodeTribe is a dedicated programme for developing the next generation of software developers. While established startups are welcome to have members participate in their own time and at own expense, they do not qualify for bursaries as full time students. Startups and their staff or members are advised to apply for incubation and acceleration support through Maxum Business Incubator and mLab.PreviewPreviewPreviewPreviewPreviewPreviewPreviewPreviewPreviewPreviewPreviewPreviewFrame
+worksGet new tools, new insight or a fresh way of looking at a challenge in a FREE 60-minute mlab webinar.Ionic
+An open source mobile toolkit for building high quality, cross-platform native and web app experiences. Move faster with a single code base, running everywhere with JavaScript and the Web.Angular
+Angular is a TypeScript-based free and open-source web application framework led by the Angular Team at Google and by a community of individuals and corporations. Angular is a complete rewrite from the same team that built AngularJS.ReactJs
+React is a free and open-source front-end JavaScript library for building user interfaces based on UI components. It is maintained by Meta and a community of individual developers and companies. React can be used as a base in the development of single-page or mobile applications.Node JS
+As an asynchronous event-driven JavaScript runtime, Node.js is designed to build scalable network applications. In the following 'hello world' example, many connections can be handled concurrently. Upon each connection, the callback is fired, but if there is no work to be done, Node.js will sleep.React Native
+React Native is an open-source UI software framework created by Meta Platforms, Inc. It is used to develop applications for Android, Android TV, iOS, macOS, tvOS, Web, Windows and UWP by enabling developers to use the React framework along with native platform capabilities.👋help us grow the codetribe communitytalk about codetribeShare on FacebookShare on TwitterContact
+UsSend us a messageEmail   *
+Email   *Subject   *
+Subject   *Message   *
+Message   *SendGautengviewingmLab Tshwane is a proud partnership between mLab, The Innovation Hub and The Department of Science and Innovation and represents the first mLab launched in South Africa in 2012 through the support of the current partners and the CSIR, the World Bank and the Finnish Ministry of Foreign Affairs.Limpopoview on mapmLab Limpopo is a proud partnership between mLab, Limpopo Connexion and The Department of Science and Innovation.Nothern Capeview on mapmLab Northern Cape is a proud partnership between mLab, the Northern Cape Department of Economic Development and Tourism, Sol Plaatje Municipality, Northern Cape Community Education College, and The Department of Science and Innovation.
+
+--- Source: https://mlab.co.za/who-we-are/ ---
+
+Home
+Who we are
+What we do
+Caret Down
+Tech Ecosystems
+Tech Skills
+Tech Start-ups
+Tech Solutions
+Partners
+News
+Resources
+Contact Us
+codetribeMenu
+Home
+Who we are
+What we do
+Caret Down
+Tech Ecosystems
+Tech Skills
+Tech Start-ups
+Tech Solutions
+Partners
+News
+Resources
+Contact Us
+codetribeWHO WE AREAbout UsMobile Applications Laboratory NPC (mLab) is a tech-centred business that prepares innovators and entrepreneurs to maximise opportunities in the digital economy. mLab works alongside various partners to build a vibrant, robust innovation ecosystem. We have a strong focus on empowering youth, women and previously disadvantaged communities through digital skills training, enterprise support and technology development services.mLab was established in 2011 by a consortium of organisations that include the World Bank (InfoDev), Department of Science and Innovation (DSI), The Council for Scientific and Industrial Research in South Africa (CSIR) and The Innovation Hub (TIH) amongst other stakeholders to help open and expand the mobile applications economy in South Africa.mLab is registered as a Not-for-Profit Company (NPC) with public benefit organisation (PBO) status and is a Level 1 B-BBEE service provider.mLab has offices in Limpopo, Gauteng, and Northern Cape, and in Gauteng, it offers its CodeTribe Academy training in Soweto, Tembisa and Tshwane.When our youth are empowered, they create innovative solutions that drive our society.OUR TEAMmLab has a staff complement of passionate and dynamic young individuals who are determined to drive and transform South Africa’s ICT sector.Antoinette CraffordHR ConsultantIvan JohnsonJUNIOR COORDINATORKabelo GaotlhaelweSkills FacilitatorKeketso MatsumaUIUX DesignerMelvin MusehaniTechnical LeadNicki KoorbanallyCEONokwanda MaranjaneSkills FacilitatorPalesa AntonyTechnology Ecosystem LeadSina LegongHead of Reginal Innovation and PartnershipsSizwe MasemolaFull Stack DeveloperTendai MazhudeCOOVeronica MahlanguSkills Accelerator CoordinatorZack TingaSkills Facilitator / Quality AssuranceZukanye MadakanaMarketing and Communications AdminmLab is a tech-centred business that prepares innovators and entrepreneurs for opportunities within the digital economy. mLab is registered as a Not-for-Profit Company (NPC) with public benefit organisation (PBO) status and is a Level 1 B-BBEE service provider.Explore
+Home
+Who we are
+What we do
+Partners
+News
+Resources
+Contact UsContact usThe Innovation Hub, Enterprise Building, 8, Pretoria, 0020Chat to us
+
+--- Source: https://mlab.co.za/what-we-do/tech-skills ---
+
+Home
+Who we are
+What we do
+Caret Down
+Tech Ecosystems
+Tech Skills
+Tech Start-ups
+Tech Solutions
+Partners
+News
+Resources
+Contact Us
+codetribeMenu
+Home
+Who we are
+What we do
+Caret Down
+Tech Ecosystems
+Tech Skills
+Tech Start-ups
+Tech Solutions
+Partners
+News
+Resources
+Contact Us
+codetribeTECH SKILLSSupports aspiring coders to develop Android, iOS and Web solutionsContact Us for more infoAccording to the World Bank, more than 230 million jobs will require digital skills in Africa by 2030. Employers are already struggling to find the skills they need to run their businesses. There are many reasons for this but among the reasons is a disjoint between what is traditionally taught and the shifting demand due to emerging technologies. This skills gap is detrimental not only to individual businesses but to economies at large.
+To bridge this digital divide gap, mLab works closely with business partners to ensure its curriculum is closely aligned with business needs. mLab gives young South Africans the skills, experience and confidence to harness the fruit of technology-led prosperity.
+The programme is accredited by the Institute of Information Technology Professionals South Africa (IITPSA). The coding programme provides training and work experience to talented youth in ICT to develop a portfolio of Android, iOS and Web solutions. Participants are also up-skilled in cloud technologies, scrum agile project management and introduced to 4IR technologies in order to drive their employment and self-employment prospects.SELECTION CRITERIAWe are looking for passionate and committed young innovators, founders, next generation coders and digital creatives. If you believe you or somebody you know meet the below criteria, we encourage you to apply if calls are open, otherwise register on our database through Palesa the chatbot to be notified when calls open.The ideal candidates for this 6 - 12 month programme must have either:Be a South African citizen with a valid ID.Be an unemployed youth/graduate between 18 to 35 years of age.Reside within proximity of a CodeTribe Academy facilityNot have a criminal record.Minimum 12 months IT qualification/ NQF level 5 (with programming background) e.g. Diploma in IT, Degree/B Tech/Honours in IT, Bcom Informatics (Information Systems) and/or Qualification in Mathematics/Statistics/Applied Mathematics or IT related field.Young South African females are encouraged to apply. Young people with disabilities are also encouraged to apply. Finally, students in their final year doing their work Integrated learning are also encouraged to apply.It is specifically noted that candidates with any of the above qualifications will have also completed Matric/Grade 12/ NQF level 4. Candidates with only this level of qualification will only be considered under special circumstances where they can produce sufficient evidence of software development experience in the form of portfolios or qualified references. The mLab believes in encouraging those without this level of qualification to first complete their Matric/Grade 12/NQF Level 4.Please note: Our Skills programme receives a large amount of applications when open. Hence, should you not hear back from us within a month of applying, please assume that your application was unsuccessful.mLab is a tech-centred business that prepares innovators and entrepreneurs for opportunities within the digital economy. mLab is registered as a Not-for-Profit Company (NPC) with public benefit organisation (PBO) status and is a Level 1 B-BBEE service provider.Explore
+Home
+Who we are
+What we do
+Partners
+News
+Resources
+Contact UsContact usThe Innovation Hub, Enterprise Building, 8, Pretoria, 0020Chat to us
+
+--- Source: https://mlab.co.za/what-we-do/tech-start-ups ---
+
+Home
+Who we are
+What we do
+Caret Down
+Tech Ecosystems
+Tech Skills
+Tech Start-ups
+Tech Solutions
+Partners
+News
+Resources
+Contact Us
+codetribeMenu
+Home
+Who we are
+What we do
+Caret Down
+Tech Ecosystems
+Tech Skills
+Tech Start-ups
+Tech Solutions
+Partners
+News
+Resources
+Contact Us
+codetribeTECH START-UPSAssisting early-stage start-ups to pursue their next growth opportunityContact Us for more infoBuild your product today with usReady to take the leap? Register your startup now and unlock the doors to endless possibilities!Apply for Tech SolutionA great business idea is a good start … but where to from there? mLab specialises in supporting early-stage start-ups through our various accelerator programmes. We have developed significant offerings and competencies over the past decade to deliver a value chain of support to entrepreneurs. We have supported hundreds of start-ups in various sectors such as; Transport, Education, Agriculture, e-Commerce, Health and Professional Services amongst others. They in turn have gone on to win awards, gain exposure to international markets, secure growth funding, create hundreds of jobs, generate millions in revenue and positively impact many of our lives.This Enterprise Development programme supports early-stage founders of tech-enabled businesses to pursue their next growth opportunity. mLab does this through providing critical support services such as gap analysis, go-to-market strategies, mentorship, grant seed funding as well as assistance with digital tools and development of minimal viable products (MVPs). Beneficiaries also benefit from entrepreneurship focused training, networking events, office space, access to equipment and devices amongst other forms of support.SELECTION CRITERIAWe are looking for passionate and committed young innovators, founders, next generation coders and digital creatives. If you believe you or somebody you know meet the below criteria, we encourage you to apply if calls are open, otherwise register onto our database to be notified when calls open.The below selection criteria serves as a general guideline, specific calls may have slightly different requirements:Preference will be given to CIPC registered businessBusiness vintage should be below 5 yearsBusiness should be able to demonstrate market validation or market research of business concept and/or business viabilityBusiness that are able to demonstrate turnover below R1 million per annum (pre-VAT)Preference will be given to business between B-BBEE level 1 and level 4Preference will be given to businesses with female directorship or shareholdingPreference will be given to businesses with youth directorship or shareholdingBusinesses are recommended to have more than one team member in order to ensure business continuity and dynamismPlease Note:Selection for mLab’s enterprise development programme is a very competitive process and applicants are advised to summit their best submission with clear and accurate information. Once submitted the application will be reviewed as is and no requests for in person presentations or sharing further information by phone will be facilitated. Due to the high volume of applicants per season - mLab and its partners will only communicate with candidates selected to move into the next evaluation stage. Should you not receive feedback within 2 months of the application closing date your application may be deemed unsuccessful and you are invited to apply again the following season with an improved proposal. Applicants who receive a notice of referral to mLab from other parties should note  that their application with that partner has most likely been unsuccessful and that the referral to mLab entails undergoing mLab’s independent review process. Kindly note that referrals do not represent a progression of any 3rd party’s application process and does not circumvent any mLab recruitment and selection processes.INITIATIVESBoostUpBotswana Namibia South Africa Tanzania ZambiaLaunch LeagueBotswana Namibia South Africa Tanzania ZambiaTIA App FundSouth Africa Technology Innovation AgencymLab is a tech-centred business that prepares innovators and entrepreneurs for opportunities within the digital economy. mLab is registered as a Not-for-Profit Company (NPC) with public benefit organisation (PBO) status and is a Level 1 B-BBEE service provider.Explore
+Home
+Who we are
+What we do
+Partners
+News
+Resources
+Contact UsContact usThe Innovation Hub, Enterprise Building, 8, Pretoria, 0020Chat to us
+
+--- Source: https://mlab.co.za/what-we-do/tech-solutions ---
+
+Home
+Who we are
+What we do
+Caret Down
+Tech Ecosystems
+Tech Skills
+Tech Start-ups
+Tech Solutions
+Partners
+News
+Resources
+Contact Us
+codetribeMenu
+Home
+Who we are
+What we do
+Caret Down
+Tech Ecosystems
+Tech Skills
+Tech Start-ups
+Tech Solutions
+Partners
+News
+Resources
+Contact Us
+codetribeTECH SOLUTIONSWe help co-create digital solutions that address social and economic challengesContact Us for more infomLab’s Innovation Lab is a creative space where our team supports digital solution development, especially those with a social impact focus.With its feet in both the non-profit and digital enterprise spaces, mLab is uniquely positioned to co-create solutions for some of today’s most challenging scenarios. mLab coding academy graduates and start-ups are included in the projects where possible so that they gain access to customers. mLab de-risks them by providing oversight and mentorship to ensure the successful delivery of client projects.Past projects include a cancer awareness solution, water quality monitoring system for rural communities and an agriculture shared-knowledge repository. Other solutions include a gender-based violence solution for the Ahmed Kathrada Foundation, and youth unemployment solution for the South African Presidency through the Department of Science and Innovation (DSI).
+SustainableArtificial Intelligencethemed webinars, hackathon and
+post-hack incubationUnleash Innovation, Transform Tomorrow
+View EventOUR TECHMAFATSA company that offers an array of products and services including livestock feed, as well as veterinarian and security services, saving farmers a lot of money in transportation whilst contributing to food security.ZirraThe Zimele Racism Reporting App is developed by the Ahmed Kathrada Foundation in partnership with mLab SA. This App works as a racism incident reporting tool that allows individuals to report cases of racism countrywide.FarmruFarmru is an Agri-Tech low-cost hardware, software and applications provider with innovations that are tailored to assist smallholder farmers in rural areas in Limpopo, South Africa, and the rest of Africa. Farmru’s mission is guided by a fundamental strategy to promote rural development, food security, nutrition, and sustainable agriculture practices. Farmru uses technology to equip farmers to become more efficient and knowledgeable by using technology in agriculture activities.ARC HUBThe ARC(Agricultural Research Council) and its key stakeholders, identified the need to develop a technology driven platform to support farmers, experts and advisors.mPowamPowa, a member of the SA Youth Network, is a mobile app for South African youth, providing them with location-based, profile-specific information about services relating to employment, education and entrepreneurship in their vicinity.mLab is a tech-centred business that prepares innovators and entrepreneurs for opportunities within the digital economy. mLab is registered as a Not-for-Profit Company (NPC) with public benefit organisation (PBO) status and is a Level 1 B-BBEE service provider.Explore
+Home
+Who we are
+What we do
+Partners
+News
+Resources
+Contact UsContact usThe Innovation Hub, Enterprise Building, 8, Pretoria, 0020Chat to us
+
+--- Source: https://mlab.co.za/resources ---
+
+Home
+Who we are
+What we do
+Caret Down
+Tech Ecosystems
+Tech Skills
+Tech Start-ups
+Tech Solutions
+Partners
+News
+Resources
+Contact Us
+codetribeMenu
+Home
+Who we are
+What we do
+Caret Down
+Tech Ecosystems
+Tech Skills
+Tech Start-ups
+Tech Solutions
+Partners
+News
+Resources
+Contact Us
+codetribeRESOURCESExtra PublicationsmLab is a tech-centred business that prepares innovators and entrepreneurs for opportunities within the digital economy. mLab is registered as a Not-for-Profit Company (NPC) with public benefit organisation (PBO) status and is a Level 1 B-BBEE service provider.Explore
+Home
+Who we are
+What we do
+Partners
+News
+Resources
+Contact UsContact usThe Innovation Hub, Enterprise Building, 8, Pretoria, 0020Chat to us

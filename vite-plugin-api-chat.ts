@@ -1,7 +1,8 @@
 import type { Plugin } from 'vite';
 import { loadEnv } from 'vite';
-import { readFile } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
+import { spawn } from 'node:child_process';
 
 const SYSTEM_INSTRUCTION = `You are a helpful mLab AI Support assistant for mLab (South Africa).
 
@@ -10,18 +11,29 @@ Rules:
 - Do not use information about other organizations with similar names (e.g., mLab in other countries).
 - If the answer is not in the provided context, say you do not have that information and suggest contacting mLab directly.
 - Do not mention the existence of any internal notes or context.
-- Keep responses concise and friendly.`;
+- Keep every answer short: 3 to 4 sentences at most.
+- Use plain text only: no markdown, no asterisks, no bold, no bullet points or lists. Write in simple flowing sentences.`;
 const DEFAULT_MODEL = 'Qwen/Qwen2.5-7B-Instruct';
-const KNOWLEDGE_PATH = 'knowledge/07_frequently_asked_questions.txt';
+const KNOWLEDGE_DIR = 'knowledge';
 
 let cachedKnowledge: string | null = null;
 
 async function getKnowledgeBase(): Promise<string> {
   if (cachedKnowledge !== null) return cachedKnowledge;
   try {
-    const fullPath = path.join(process.cwd(), KNOWLEDGE_PATH);
-    const text = await readFile(fullPath, 'utf-8');
-    cachedKnowledge = text.trim();
+    const dirPath = path.join(process.cwd(), KNOWLEDGE_DIR);
+    const entries = await readdir(dirPath, { withFileTypes: true });
+    const txtFiles = entries
+      .filter((e) => e.isFile() && e.name.endsWith('.txt'))
+      .map((e) => e.name)
+      .sort();
+    const parts: string[] = [];
+    for (const name of txtFiles) {
+      const fullPath = path.join(dirPath, name);
+      const text = await readFile(fullPath, 'utf-8');
+      parts.push(text.trim());
+    }
+    cachedKnowledge = parts.filter(Boolean).join('\n\n');
   } catch {
     cachedKnowledge = '';
   }
@@ -41,10 +53,49 @@ function extractText(payload: unknown): string {
   return '';
 }
 
+const REFRESH_SCRAPE_EVERY = 3; // dev: run scraper every N refreshes
+
+function runScraperScript(onDone?: () => void): void {
+  const scriptPath = path.join(process.cwd(), 'scripts', 'scrape-knowledge.mjs');
+  const child = spawn('node', [scriptPath], { stdio: 'inherit', shell: true });
+  child.on('close', () => {
+    cachedKnowledge = null;
+    onDone?.();
+  });
+}
+
 export function apiChatPlugin(): Plugin {
+  let devRefreshCount = 0;
+
   return {
     name: 'api-chat',
     configureServer(server) {
+      const isDev = process.env.NODE_ENV !== 'production';
+
+      if (isDev) {
+        console.log('[Scraper] Running once on dev server start...');
+        runScraperScript(() => {
+          console.log('[Scraper] Completed successfully (dev start).');
+        });
+      }
+
+      server.middlewares.use((req, res, next) => {
+        if (req.url === '/api/visit' && req.method === 'GET' && isDev) {
+          devRefreshCount += 1;
+          const scraperTriggered = devRefreshCount % REFRESH_SCRAPE_EVERY === 0;
+          console.log(`[Refresh] count = ${devRefreshCount}`);
+          if (scraperTriggered) {
+            console.log(`[Scraper] Being run again (every ${REFRESH_SCRAPE_EVERY}rd refresh).`);
+            runScraperScript();
+          }
+          res.statusCode = 200;
+          res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify({ refreshCount: devRefreshCount, scraperTriggered }));
+          return;
+        }
+        next();
+      });
+
       server.middlewares.use(async (req, res, next) => {
         if (req.url !== '/api/chat' || req.method !== 'POST') {
           next();
