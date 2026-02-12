@@ -1,66 +1,82 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
-
-function getApiKey(): string {
-  const key = (
-    (typeof import.meta !== 'undefined' && (import.meta.env as Record<string, string>)?.VITE_GEMINI_API_KEY) ||
-    (typeof import.meta !== 'undefined' && (import.meta.env as Record<string, string>)?.GEMINI_API_KEY) ||
-    (typeof process !== 'undefined' && process.env?.GEMINI_API_KEY) ||
-    (typeof process !== 'undefined' && process.env?.API_KEY) ||
-    ''
-  ).trim();
-  return key;
-}
-
-const MODEL = 'gemini-2.0-flash';
-
 class LLMProvider {
-  private genAI: GoogleGenerativeAI | null = null;
+  private apiKey: string;
+  private systemPrompt: string;
 
   constructor() {
-    const apiKey = getApiKey();
-    if (apiKey) {
-      this.genAI = new GoogleGenerativeAI(apiKey);
-    }
+    // IMPORTANT: Get a NEW API key - this one is publicly visible!
+    this.apiKey = 'AIzaSyAFJKVjzPQzlf9stf84bA-VGzT23ZBh5Hs';
+    
+    // Updated system prompt - more direct and confident
+    this.systemPrompt = `You are a helpful mLab customer support assistant for https://mlab.co.za/. 
+
+Your job is to answer customer questions directly and confidently using the knowledge base information provided.
+
+IMPORTANT RULES:
+1. Always try to answer the question using the knowledge base context
+2. Be specific and give complete answers
+3. Don't be overly cautious - if the information is in the knowledge base, answer it!
+4. Use friendly, simple language
+5. ONLY suggest talking to a human agent if the knowledge base truly has NO information about the question
+6. Never say "I don't have enough information" if there IS relevant information in the context`;
   }
 
-  async generateResponse(prompt: string): Promise<{ text: string; latency: number }> {
+  async generateResponse(prompt: string, context: string = ""): Promise<{ text: string; latency: number }> {
     const start = Date.now();
-    const apiKey = getApiKey();
-    if (!apiKey) {
-      return {
-        text: "API key not set. Add GEMINI_API_KEY to a .env file in the project root and restart the dev server (Ctrl+C then npm run dev).",
-        latency: Date.now() - start
-      };
-    }
-    if (!this.genAI) {
-      this.genAI = new GoogleGenerativeAI(apiKey);
-    }
+    
     try {
-      const model = this.genAI.getGenerativeModel({
-        model: MODEL,
-        systemInstruction: "You are a friendly mLab AI Support agent. Answer questions about mLab programmes, locations, applications, and events. Use simple language."
+      // Simplified prompt structure - more direct
+      let fullPrompt = `${this.systemPrompt}\n\n`;
+      
+      if (context && context.trim()) {
+        fullPrompt += `KNOWLEDGE BASE INFORMATION:\n${context}\n\n`;
+      }
+      
+      fullPrompt += `CUSTOMER QUESTION: ${prompt}\n\n`;
+      fullPrompt += `Answer the customer's question directly using the knowledge base information above. Be helpful and specific.`;
+
+      // Using gemini-2.5-flash
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${this.apiKey}`;
+
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          contents: [{
+            parts: [{ text: fullPrompt }]
+          }],
+          generationConfig: {
+            temperature: 0.7,
+            maxOutputTokens: 1024,
+            topP: 0.95,
+            topK: 40
+          }
+        })
       });
-      const result = await model.generateContent(prompt);
-      const response = result.response;
-      const text = response.text();
-      return {
-        text: text || "I'm sorry, I couldn't generate a response. Would you like to speak to an agent?",
-        latency: Date.now() - start
-      };
-    } catch (err: unknown) {
-      const error = err as { message?: string; status?: number };
-      const msg = error?.message ?? String(err);
-      console.error("LLM Error:", err);
-      const userMsg = msg.includes('API_KEY') || msg.includes('API key')
-        ? "API key invalid or missing. Check your .env file and restart the dev server."
-        : msg.includes('quota') || msg.includes('429')
-          ? "Rate limit exceeded. Please try again in a moment."
-          : msg.includes('403') || msg.includes('PERMISSION')
-            ? "Permission denied. Check that your API key is valid and has Gemini API access."
-            : `Error connecting to AI service. Please try again. (${msg.slice(0, 80)}${msg.length > 80 ? '…' : ''})`;
-      return {
-        text: userMsg,
-        latency: Date.now() - start
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        console.error("API Error:", data);
+        return { 
+          text: `I apologize, but I'm having trouble right now. Please try again or contact our support team.`, 
+          latency: Date.now() - start 
+        };
+      }
+
+      console.log("Success! API Response:", data);
+
+      const text = data.candidates?.[0]?.content?.parts?.[0]?.text || 
+                   "I'm sorry, I couldn't generate a response. Please try again.";
+
+      return { text, latency: Date.now() - start };
+      
+    } catch (error: any) {
+      console.error("LLM Error:", error);
+      return { 
+        text: "I'm having trouble right now. Please try again or contact our support team.", 
+        latency: Date.now() - start 
       };
     }
   }
