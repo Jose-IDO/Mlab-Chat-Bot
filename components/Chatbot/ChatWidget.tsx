@@ -6,6 +6,18 @@ import { saveMessage } from "../../firebase/chatService";
 
 const ESCALATION_LINK_TEXT = 'Speak to an agent';
 
+const getUserId = () => {
+
+  let userId = localStorage.getItem("chatUserId");
+
+  if (!userId) {
+    userId = crypto.randomUUID();
+    localStorage.setItem("chatUserId", userId);
+  }
+
+  return userId;
+};
+
 async function sendToChatApi(prompt: string): Promise<{ text: string }> {
   const res = await fetch('/api/chat', {
     method: 'POST',
@@ -59,29 +71,51 @@ const ChatWidget: React.FC = () => {
   const openEscalationOverlay = () => setShowEscalation(true);
   const closeEscalationOverlay = () => setShowEscalation(false);
 
-  const handleSend = async (text: string = inputValue) => {
-    if (!text.trim()) return;
-    addMessage(ChatRole.USER, text);
+const handleSend = async (text: string = inputValue) => {
 
-    await saveMessage(text, "user");
+  if (!text.trim()) return;
 
-    setInputValue('');
+  const userId = getUserId();
 
-    try {
-      const response = await sendToChatApi(text);
-      addMessage(ChatRole.BOT, response.text);
-      await saveMessage(response.text, "ai");
+  // show user message
+  addMessage(ChatRole.USER, text);
 
-    } catch (err) {
+  // save user message
+  await saveMessage(userId, text, "user");
 
-      const errorMessage = err instanceof Error
-        ? err.message
-        : 'Error connecting to AI service. Please try again.';
+  setInputValue('');
 
-      addMessage(ChatRole.BOT, errorMessage);
-      await saveMessage(errorMessage, "ai");
-    }
-  };
+  try {
+
+    const response = await sendToChatApi(text);
+
+    // show AI message
+    addMessage(ChatRole.BOT, response.text);
+
+    // save AI message
+    await saveMessage(
+      userId,
+      response.text,
+      "mlab-ai-chatBot"
+    );
+
+  }
+  catch (err) {
+
+    const errorMessage =
+      err instanceof Error ? err.message : "Error";
+
+    addMessage(ChatRole.BOT, errorMessage);
+
+    await saveMessage(
+      userId,
+      errorMessage,
+      "mlab-ai-chatBot"
+    );
+
+  }
+
+};
 
 
   const handleCategoryClick = (cat: string) => {
@@ -194,10 +228,11 @@ const ChatWidget: React.FC = () => {
                       <i className="fas fa-robot text-white text-[12px]"></i>
                     </div>
                   )}
-                  <div className={`px-4 py-3 rounded-2xl text-[13px] shadow-md leading-relaxed relative ${msg.role === ChatRole.USER
+                  <div className={`px-4 py-3 rounded-2xl text-[13px] shadow-md leading-relaxed relative ${
+                    msg.role === ChatRole.USER
                       ? 'bg-[#A5CD39] text-[#1F2937] rounded-tr-none'
                       : 'bg-white text-[#1F2937] rounded-tl-none'
-                    }`}>
+                  }`}>
                     {msg.content}
                     {msg.type === 'escalation' && (
                       <div className="mt-3">

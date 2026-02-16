@@ -8,34 +8,36 @@ import {
   serverTimestamp
 } from "firebase/firestore";
 
-const CONVERSATION_ID = "default_conversation";
-
 export const saveMessage = async (
+  userId: string,
   text: string,
-  sender: "user" | "ai"
+  sender: string
 ) => {
 
-  const conversationRef = doc(db, "conversations", CONVERSATION_ID);
+  const conversationRef = doc(
+    db,
+    "conversations",
+    userId
+  );
 
   const messageObject = {
-    sender: sender,
-    text: text,
+    sender,
+    text,
     createdAt: new Date()
   };
 
-  const conversationSnap = await getDoc(conversationRef);
+  const snap = await getDoc(conversationRef);
 
-  if (!conversationSnap.exists()) {
+  if (!snap.exists()) {
 
-    // create new conversation
     await setDoc(conversationRef, {
+      userId,
       createdAt: serverTimestamp(),
       messages: [messageObject]
     });
 
   } else {
 
-    // add message to existing conversation
     await updateDoc(conversationRef, {
       messages: arrayUnion(messageObject)
     });
