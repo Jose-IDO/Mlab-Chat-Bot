@@ -1,29 +1,54 @@
-
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { Escalation, ChatEvent, EscalationStatus } from '../types';
+import { getFirebaseApp } from './firebase';
+import { getFirestore } from 'firebase/firestore';
 
-// Simulated Local Storage / Persistence for Demo
+const ESCALATIONS_COLLECTION = 'escalations';
+
+// In-memory fallback when Firebase is not configured
+const inMemoryEscalations: Escalation[] = [];
+
 class FirebaseService {
-  private escalations: Escalation[] = [];
   private events: ChatEvent[] = [];
 
   // Escalations
   async getEscalations(): Promise<Escalation[]> {
-    return this.escalations;
+    return inMemoryEscalations;
   }
 
   async createEscalation(data: Omit<Escalation, 'id' | 'status' | 'createdAt'>): Promise<Escalation> {
+    const app = getFirebaseApp();
+    if (app) {
+      const db = getFirestore(app);
+      const docRef = await addDoc(collection(db, ESCALATIONS_COLLECTION), {
+        fullName: data.fullName,
+        email: data.email,
+        phone: data.phone ?? null,
+        message: data.message,
+        category: data.category,
+        status: EscalationStatus.OPEN,
+        createdAt: serverTimestamp(),
+        popiaConsent: data.popiaConsent
+      });
+      return {
+        id: docRef.id,
+        ...data,
+        status: EscalationStatus.OPEN,
+        createdAt: new Date()
+      };
+    }
     const newEsc: Escalation = {
       ...data,
       id: `ESC-${Math.random().toString(36).substr(2, 6).toUpperCase()}`,
       status: EscalationStatus.OPEN,
       createdAt: new Date()
     };
-    this.escalations.push(newEsc);
+    inMemoryEscalations.push(newEsc);
     return newEsc;
   }
 
   async updateEscalationStatus(id: string, status: EscalationStatus): Promise<void> {
-    const esc = this.escalations.find(e => e.id === id);
+    const esc = inMemoryEscalations.find(e => e.id === id);
     if (esc) esc.status = status;
   }
 
