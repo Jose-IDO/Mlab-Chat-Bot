@@ -17,8 +17,8 @@ export default defineConfig(({ mode }) => {
       define: {
         'process.env.API_KEY': JSON.stringify(''),
         'process.env.GEMINI_API_KEY': JSON.stringify(''),
-        'import.meta.env.VITE_GEMINI_API_KEY': JSON.stringify(''),
-        // So chat works on static hosting (no /api/chat); key must be in .env at build time
+        'import.meta.env.VITE_GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY ?? env.VITE_GEMINI_API_KEY ?? ''),
+        'import.meta.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY ?? env.VITE_GEMINI_API_KEY ?? ''),
         'import.meta.env.HF_API_KEY': JSON.stringify(env.HF_API_KEY ?? ''),
         'import.meta.env.HF_MODEL': JSON.stringify(env.HF_MODEL ?? '')
       },
