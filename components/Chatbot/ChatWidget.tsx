@@ -2,18 +2,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ChatRole, Message } from '../../types';
 import { CATEGORIES } from '../../constants';
 import EscalationForm from './EscalationForm';
+import { llmProvider } from '../../services/llmProvider';
 
 const ESCALATION_LINK_TEXT = 'Speak to an agent';
 
-async function sendToChatApi(prompt: string): Promise<{ text: string }> {
-  const res = await fetch('/api/chat', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ prompt })
-  });
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.text || 'Request failed');
-  return data;
+/** Use LLM directly so chat works on static hosting (Firebase, etc.) where /api/chat is not available. */
+async function getChatResponse(prompt: string): Promise<{ text: string }> {
+  const { text } = await llmProvider.generateResponse(prompt);
+  return { text };
 }
 
 const ChatWidget: React.FC = () => {
@@ -65,7 +61,7 @@ const ChatWidget: React.FC = () => {
     setInputValue('');
 
     try {
-      const response = await sendToChatApi(text);
+      const response = await getChatResponse(text);
       addMessage(ChatRole.BOT, response.text);
     } catch (err) {
       addMessage(ChatRole.BOT, err instanceof Error ? err.message : 'Error connecting to AI service. Please try again.');

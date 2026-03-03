@@ -5,20 +5,22 @@ import { apiChatPlugin } from './vite-plugin-api-chat';
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
-    const isDev = mode === 'development';
     return {
-      base: isDev ? '/' : '/Mlab-Chat-Bot/',
+      // Use '/' for Firebase Hosting (and most hosts). Use '/Mlab-Chat-Bot/' only for GitHub Pages.
+      base: '/',
       server: {
         port: 5173,
         host: true,
         strictPort: true,
       },
       plugins: [react(), apiChatPlugin()],
-      // Never expose API key to client bundle (chat uses server /api/chat only)
       define: {
         'process.env.API_KEY': JSON.stringify(''),
         'process.env.GEMINI_API_KEY': JSON.stringify(''),
-        'import.meta.env.VITE_GEMINI_API_KEY': JSON.stringify('')
+        'import.meta.env.VITE_GEMINI_API_KEY': JSON.stringify(''),
+        // So chat works on static hosting (no /api/chat); key must be in .env at build time
+        'import.meta.env.HF_API_KEY': JSON.stringify(env.HF_API_KEY ?? ''),
+        'import.meta.env.HF_MODEL': JSON.stringify(env.HF_MODEL ?? '')
       },
       resolve: {
         alias: {

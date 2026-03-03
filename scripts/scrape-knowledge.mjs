@@ -15,12 +15,14 @@ const OUTPUT_FILE = join(KNOWLEDGE_DIR, 'scraped_knowledge.txt');
 
 const SCRAPE_URLS = [
   'https://mlab.co.za/',
-  'https://codetribelanding.netlify.app/',
   'https://mlab.co.za/who-we-are/',
-  'https://mlab.co.za/what-we-do/tech-skills',
-  'https://mlab.co.za/what-we-do/tech-start-ups',
-  'https://mlab.co.za/what-we-do/tech-solutions',
-  'https://mlab.co.za/resources',
+  'https://mlab.co.za/contact/',
+  'https://mlab.co.za/what-we-do/tech-skills/',
+  'https://mlab.co.za/what-we-do/tech-start-ups/',
+  'https://mlab.co.za/what-we-do/tech-solutions/',
+  'https://mlab.co.za/what-we-do/tech-ecosystems/',
+  'https://mlab.co.za/resources/',
+  'https://codetribelanding.netlify.app/',
 ];
 
 /**
