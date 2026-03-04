@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { firebaseService } from '../../services/firebaseService';
+import emailjs from '@emailjs/browser';
 
 const POPIA_COPY = 'I consent to mLab processing my personal information according to the POPIA Act for the sole purpose of resolving this query.';
 
@@ -28,6 +29,7 @@ const EscalationForm: React.FC<Props> = ({ onSubmit, onCancel, initialName = '',
     if (!canSubmit) return;
     setSubmitting(true);
     try {
+      // Save to Firebase
       await firebaseService.createEscalation({
         fullName: formData.name.trim(),
         email: formData.email.trim(),
@@ -36,6 +38,35 @@ const EscalationForm: React.FC<Props> = ({ onSubmit, onCancel, initialName = '',
         category: 'Chatbot escalation',
         popiaConsent: formData.consent
       });
+
+      // Send email via EmailJS
+      const emailjsServiceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || '';
+      const emailjsTemplateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || '';
+      const emailjsPublicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '';
+
+      if (emailjsServiceId && emailjsTemplateId && emailjsPublicKey) {
+        try {
+          await emailjs.send(
+            emailjsServiceId,
+            emailjsTemplateId,
+            {
+              fullName: formData.name.trim(),
+              email: formData.email.trim(),
+              phone: formData.phone.trim() || 'Not provided',
+              category: 'Chatbot escalation',
+              message: formData.message.trim(),
+            },
+            emailjsPublicKey
+          );
+          console.log('Email sent successfully via EmailJS');
+        } catch (emailError) {
+          console.error('EmailJS error:', emailError);
+          // Don't fail the form submission if email fails
+        }
+      } else {
+        console.warn('EmailJS not configured. Add VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, and VITE_EMAILJS_PUBLIC_KEY to .env');
+      }
+
       onSubmit();
     } catch (err) {
       console.error(err);

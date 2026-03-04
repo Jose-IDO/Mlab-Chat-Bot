@@ -5,6 +5,8 @@ interface ImportMetaEnv {
   readonly HF_API_KEY?: string;
   readonly VITE_HF_MODEL?: string;
   readonly HF_MODEL?: string;
+  readonly VITE_GROQ_API_KEY?: string;
+  readonly GROQ_API_KEY?: string;
   readonly VITE_FIREBASE_API_KEY?: string;
   readonly VITE_FIREBASE_AUTH_DOMAIN?: string;
   readonly VITE_FIREBASE_PROJECT_ID?: string;
